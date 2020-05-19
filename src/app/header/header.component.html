@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" *ngIf="getIsLoggedIn()">
+  <img [src]="getUserData().img" height="30" />
+  <span class="navbar-brand">Bienvenido {{ getUserData().fullName }} ({{ getUserData().userName }})</span>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav w-100">
+      <li class="nav-item dropdown ml-auto">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">Menu</a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenu">
+          <a class="dropdown-item" routerLink="/home">Home</a>
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/" (click)="logout()">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
