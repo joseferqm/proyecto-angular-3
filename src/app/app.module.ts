@@ -15,6 +15,7 @@ import {NotificationService} from './shared/notification.service';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {SpinnerService} from './shared/spinner.service';
 import {NotificationComponent} from './notification/notification.component';
+import {MatToolbarModule, MatIconModule, MatMenuModule, MatButtonModule, MatSidenavModule, MatListModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,13 @@ import {NotificationComponent} from './notification/notification.component';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [UserService, RouteGuard, NotificationService, SpinnerService],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../shared/user.service';
 import {UserData} from '../shared/models';
+import {MatToolbarModule} from '@angular/material';
 
 @Component({
   selector: 'app-header',

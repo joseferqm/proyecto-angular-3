@@ -17,14 +17,14 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // Configuracion de Firebase (se toma de la consola Web => Project Settings)
     const firebaseConfig = {
-      apiKey: '',
-      authDomain: '',
-      databaseURL: '',
-      projectId: '',
-      storageBucket: '',
-      messagingSenderId: '',
-      appId: '',
-      measurementId: ''
+      apiKey: 'AIzaSyBuI9n-Od-K6sQZZCq9ekRLyljdsp8YIJ0',
+      authDomain: 'proyecto-2-angular-ci2400.firebaseapp.com',
+      databaseURL: 'https://proyecto-2-angular-ci2400.firebaseio.com',
+      projectId: 'proyecto-2-angular-ci2400',
+      storageBucket: 'proyecto-2-angular-ci2400.appspot.com',
+      messagingSenderId: '411773194587',
+      appId: '1:411773194587:web:395644b1fa8bfee1fa4a7e',
+      measurementId: 'G-9KXNRWEET2'
     };
 
     // Inicialización del cliente de Firebase
