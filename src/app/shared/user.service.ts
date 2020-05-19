@@ -1,6 +1,7 @@
 import {Injectable, EventEmitter} from '@angular/core';
-import * as firebase from 'firebase';
-import { UserData } from './models';
+import {UserData} from './models';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireDatabase} from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,10 @@ export class UserService {
   private isLoggedIn = false;
   public statusChange: any = new EventEmitter<any>();
 
-  constructor() {}
+  constructor(
+    private firebaseAuth: AngularFireAuth,
+    private firebaseDatabase: AngularFireDatabase
+  ) {}
 
   performLogin(uid: string) {
     this.getUserDataFromFirebase(uid).then((result) => {
@@ -24,16 +28,13 @@ export class UserService {
   }
 
   performLogout() {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        this.isLoggedIn = false;
-        this.statusChange.emit(null);
-      });
+    this.firebaseAuth.signOut().then(() => {
+      this.isLoggedIn = false;
+      this.statusChange.emit(null);
+    });
   }
 
   getUserDataFromFirebase(uid: string) {
-    return firebase.database().ref('users').child(uid).once('value');
+    return this.firebaseDatabase.database.ref('users').child(uid).once('value');
   }
 }

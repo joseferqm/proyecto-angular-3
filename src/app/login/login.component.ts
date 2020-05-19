@@ -3,7 +3,7 @@ import {NgForm} from '@angular/forms';
 import {UserService} from '../shared/user.service';
 import {Router} from '@angular/router';
 import {NotificationService} from '../shared/notification.service';
-import * as firebase from 'firebase';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private firebaseAuth: AngularFireAuth
   ) {}
 
   ngOnInit() {}
@@ -23,8 +24,7 @@ export class LoginComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
 
-    firebase
-      .auth()
+    this.firebaseAuth
       .signInWithEmailAndPassword(email, password)
       .then((userData) => {
         console.log('userData', userData);

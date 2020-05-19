@@ -15,7 +15,18 @@ import {NotificationService} from './shared/notification.service';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {SpinnerService} from './shared/spinner.service';
 import {NotificationComponent} from './notification/notification.component';
-import {MatToolbarModule, MatIconModule, MatMenuModule, MatButtonModule, MatSidenavModule, MatListModule} from '@angular/material';
+import {
+  MatToolbarModule,
+  MatIconModule,
+  MatMenuModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatListModule
+} from '@angular/material';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -32,6 +43,9 @@ import {MatToolbarModule, MatIconModule, MatMenuModule, MatButtonModule, MatSide
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
