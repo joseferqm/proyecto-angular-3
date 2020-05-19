@@ -1,0 +1,28 @@
+<mat-nav-list>
+
+  <a mat-list-item routerLink="/home">Home</a>
+  <a mat-list-item routerLink="/test">Location</a>
+  <a mat-list-item routerLink="/test">Action</a>
+  <a mat-list-item routerLink="/test">Another action</a>
+
+  <div *ngIf="getIsLoggedIn()">
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader>Sección logueado</h2>
+
+    <a mat-list-item routerLink="/test">Acción logueado 1</a>
+    <a mat-list-item routerLink="/test">Acción logueado 2</a>
+    <a mat-list-item routerLink="/test">Acción logueado 3</a>
+
+  </div>
+
+  <div>
+    <mat-divider></mat-divider>
+    <h2 matSubheader>Sección general</h2>
+
+    <a mat-list-item routerLink="/test">Acción general 1</a>
+    <a mat-list-item routerLink="/test">Acción general 2</a>
+    <a mat-list-item routerLink="/test">Acción general 3</a>
+  </div>
+
+</mat-nav-list>

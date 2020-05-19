@@ -21,12 +21,16 @@ import {
   MatMenuModule,
   MatButtonModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatCardModule
 } from '@angular/material';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from '../environments/environment';
+import {SidenavComponent} from './sidenav/sidenav.component';
+import {LoginRouteGuard} from './shared/login-route-guard';
+import {TestComponent} from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,9 @@ import {environment} from '../environments/environment';
     HomeComponent,
     LoginComponent,
     HeaderComponent,
-    NotificationComponent
+    NotificationComponent,
+    SidenavComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +57,16 @@ import {environment} from '../environments/environment';
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ],
-  providers: [UserService, RouteGuard, NotificationService, SpinnerService],
+  providers: [
+    UserService,
+    RouteGuard,
+    NotificationService,
+    SpinnerService,
+    LoginRouteGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
