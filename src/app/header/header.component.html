@@ -12,7 +12,7 @@
     <span class="fill-remaining-space"></span>
 
     <div *ngIf="this.userDataObs | async as userData; else loadingBlock">
-      <div *ngIf="userData.isLoggedIn; else notLoggedInBlock">
+      <div *ngIf="userData.isLoggedIn">
         <button mat-icon-button [matMenuTriggerFor]="userMenu">
           <mat-icon>person_outline</mat-icon>
         </button>
@@ -35,7 +35,6 @@
           </button>
         </mat-menu>
       </div>
-      <ng-template #notLoggedInBlock>Not logged in.</ng-template>
     </div>
     <ng-template #loadingBlock>
       Cargando...
