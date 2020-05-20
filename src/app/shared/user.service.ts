@@ -7,7 +7,6 @@ import {AngularFireDatabase} from '@angular/fire/database';
   providedIn: 'root'
 })
 export class UserService {
-  private isLoggedIn = false;
   public statusChange: any = new EventEmitter<any>();
 
   constructor(
@@ -17,20 +16,16 @@ export class UserService {
 
   performLogin(uid: string) {
     this.getUserDataFromFirebase(uid).then((result) => {
-      this.isLoggedIn = true;
       const userData: UserData = result.val();
       this.statusChange.emit(userData);
+      localStorage.setItem('userLoggedIn', 'true');
     });
-  }
-
-  isUserLoggedIn() {
-    return this.isLoggedIn;
   }
 
   performLogout() {
     this.firebaseAuth.signOut().then(() => {
-      this.isLoggedIn = false;
       this.statusChange.emit(null);
+      localStorage.setItem('userLoggedIn', 'false');
     });
   }
 

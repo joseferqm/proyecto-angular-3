@@ -9,12 +9,8 @@ import {AngularFireAuth} from '@angular/fire/auth';
 })
 export class AppComponent implements OnInit {
   title = 'esqueleto-angular';
-  // private showSideNav = false;
 
-  constructor(
-    private userService: UserService,
-    private firebaseAuth: AngularFireAuth
-  ) {}
+  constructor(private userService: UserService, private firebaseAuth: AngularFireAuth) {}
 
   ngOnInit(): void {
     // Se revisa en Firebase si el usuario cambio su estado de autenticación
@@ -26,13 +22,5 @@ export class AppComponent implements OnInit {
         this.userService.performLogout();
       }
     });
-
-    // this.sideNavService.statusChange.subscribe((showSideNav) => {
-    //   this.showSideNav = showSideNav;
-    // });
   }
-
-  // getShowSideNav() {
-  //   return this.showSideNav;
-  // }
 }

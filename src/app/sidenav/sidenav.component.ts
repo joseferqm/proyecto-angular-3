@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../shared/user.service';
 
 @Component({
@@ -9,11 +9,17 @@ import {UserService} from '../shared/user.service';
 export class SidenavComponent implements OnInit {
   private isLoggedIn = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
+    if (localStorage.userLoggedIn) {
+      const temp = localStorage.getItem('userLoggedIn') === 'true';
+      console.log(localStorage.getItem('userLoggedIn'));
+      console.log('booleano en sidenav component', temp);
+      this.isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+    }
+
     this.userService.statusChange.subscribe((userData) => {
-      console.log('userData en sidenav', userData);
       if (userData) {
         // Si es distinto de null, el usuario está logueado
         this.isLoggedIn = true;
