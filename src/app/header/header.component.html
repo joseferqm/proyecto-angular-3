@@ -17,22 +17,23 @@
           <mat-icon>person_outline</mat-icon>
         </button>
         <mat-menu #userMenu="matMenu">
-          <mat-card>
+          <mat-card class="mat-elevation-z0">
             <mat-card-header>
               <img mat-card-avatar [src]="userData.img" height="30" alt="Avatar">
               <mat-card-title>{{ userData.fullName }}</mat-card-title>
               <mat-card-subtitle>{{ userData.userName }}</mat-card-subtitle>
             </mat-card-header>
+            <mat-card-content>
+              <button mat-menu-item style="outline: none;">
+                <mat-icon>edit</mat-icon>
+                <span>Editar cuenta</span>
+              </button>
+              <button mat-menu-item (click)="logout()" style="outline: none;">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Cerrar sesión</span>
+              </button>
+            </mat-card-content>
           </mat-card>
-          <mat-divider></mat-divider>
-          <button mat-menu-item>
-            <mat-icon>edit</mat-icon>
-            <span>Editar cuenta</span>
-          </button>
-          <button mat-menu-item (click)="logout()">
-            <mat-icon>exit_to_app</mat-icon>
-            <span>Cerrar sesión</span>
-          </button>
         </mat-menu>
       </div>
     </div>
