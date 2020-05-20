@@ -1,7 +1,7 @@
-import {Component, OnInit, OnDestroy, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, OnDestroy, Output, EventEmitter, Inject} from '@angular/core';
 import {UserService} from '../shared/user.service';
 import {Subscription, Observable, of} from 'rxjs';
-import {share} from 'rxjs/operators';
+import {APP_TITLE} from '../app.component';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   userDataObs: Observable<any>;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, @Inject(APP_TITLE) public title: string) {}
 
   ngOnInit() {
     this.subscription = this.userService.statusChange.subscribe((userData) => {
