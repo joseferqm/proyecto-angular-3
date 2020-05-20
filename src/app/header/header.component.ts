@@ -1,6 +1,5 @@
 import {Component, OnInit, OnDestroy, Output, EventEmitter} from '@angular/core';
 import {UserService} from '../shared/user.service';
-import {UserData} from '../shared/models';
 import {Subscription, Observable, of} from 'rxjs';
 import {share} from 'rxjs/operators';
 
@@ -11,32 +10,25 @@ import {share} from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   @Output() public sidenavToggle = new EventEmitter<any>();
-  private loading = false;
   private isLoggedIn;
-
   private subscription: Subscription;
-  private userData: UserData;
-  userDataObs: Observable<UserData>;
+  userDataObs: Observable<any>;
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    if (localStorage.userLoggedIn) {
-      const temp = localStorage.getItem('userLoggedIn') === 'true';
-      console.log(localStorage.getItem('userLoggedIn'));
-      console.log('booleano en header component', temp);
-      this.isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
-    }
-
     this.subscription = this.userService.statusChange.subscribe((userData) => {
+      let userDataCopy;
       if (userData) {
         // Si es distinto de null, el usuario está logueado
         this.isLoggedIn = true;
-        this.userData = userData;
-        this.userDataObs = of(userData).pipe(share());
+        userDataCopy = {...userData};
       } else {
         this.isLoggedIn = false;
+        userDataCopy = {};
       }
+      userDataCopy.isLoggedIn = this.isLoggedIn;
+      this.userDataObs = of(userDataCopy).pipe();
     });
   }
 
@@ -47,14 +39,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     this.userService.performLogout();
-  }
-
-  getUserData(): UserData {
-    return this.userData;
-  }
-
-  getIsLoggedIn(): boolean {
-    return this.isLoggedIn;
   }
 
   onClickMenuIconButton() {

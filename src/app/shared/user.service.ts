@@ -18,14 +18,12 @@ export class UserService {
     this.getUserDataFromFirebase(uid).then((result) => {
       const userData: UserData = result.val();
       this.statusChange.emit(userData);
-      localStorage.setItem('userLoggedIn', 'true');
     });
   }
 
   performLogout() {
     this.firebaseAuth.signOut().then(() => {
       this.statusChange.emit(null);
-      localStorage.setItem('userLoggedIn', 'false');
     });
   }
 

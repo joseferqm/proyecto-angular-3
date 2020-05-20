@@ -5,16 +5,20 @@
   <a mat-list-item routerLink="/test">Action</a>
   <a mat-list-item routerLink="/test">Another action</a>
 
-  <div *ngIf="getIsLoggedIn()">
-    <mat-divider></mat-divider>
+  <div *ngIf="this.userDataObs | async as userData; else loadingBlock">
+    <div *ngIf="userData.isLoggedIn">
+      <mat-divider></mat-divider>
 
-    <h2 matSubheader>Sección logueado</h2>
+      <h2 matSubheader>Sección logueado</h2>
 
-    <a mat-list-item routerLink="/test">Acción logueado 1</a>
-    <a mat-list-item routerLink="/test">Acción logueado 2</a>
-    <a mat-list-item routerLink="/test">Acción logueado 3</a>
-
+      <a mat-list-item routerLink="/test">Acción logueado 1</a>
+      <a mat-list-item routerLink="/test">Acción logueado 2</a>
+      <a mat-list-item routerLink="/test">Acción logueado 3</a>
+    </div>
   </div>
+  <ng-template #loadingBlock>
+    Cargando...
+  </ng-template>
 
   <div>
     <mat-divider></mat-divider>

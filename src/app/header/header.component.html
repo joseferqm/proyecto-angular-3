@@ -11,17 +11,12 @@
     <!-- This fills the remaining space of the current row -->
     <span class="fill-remaining-space"></span>
 
-    <!-- <mat-spinner color="accent"></mat-spinner> -->
-    <!-- <mat-progress-bar mode="buffer"></mat-progress-bar> -->
-    <!-- <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar> -->
-    <div *ngIf="this.getIsLoggedIn()">
-      <button mat-icon-button [matMenuTriggerFor]="userMenu">
-        <mat-icon>person_outline</mat-icon>
-      </button>
-
-      <mat-menu #userMenu="matMenu">
-        <div *ngIf="userDataObs | async as userData; else loading">
-
+    <div *ngIf="this.userDataObs | async as userData; else loadingBlock">
+      <div *ngIf="userData.isLoggedIn; else notLoggedInBlock">
+        <button mat-icon-button [matMenuTriggerFor]="userMenu">
+          <mat-icon>person_outline</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
           <mat-card>
             <mat-card-header>
               <img mat-card-avatar [src]="userData.img" height="30" alt="Avatar">
@@ -38,39 +33,13 @@
             <mat-icon>exit_to_app</mat-icon>
             <span>Cerrar sesión</span>
           </button>
-
-        </div>
-        <ng-template #loading>
-          <mat-spinner></mat-spinner>
-      </ng-template>
-      </mat-menu>
-
+        </mat-menu>
+      </div>
+      <ng-template #notLoggedInBlock>Not logged in.</ng-template>
     </div>
-    <!-- </ng-template> -->
-    <!-- <div *ngIf="isLoggedIn$ | async; else elseBlock">
-      <button mat-icon-button [matMenuTriggerFor]="userMenu">
-        <mat-icon>person_outline</mat-icon>
-      </button>
-      <mat-menu #userMenu="matMenu">
-        <mat-card>
-          <mat-card-header>
-            <img mat-card-avatar [src]="this.getUserData().img" height="30" alt="Avatar">
-            <mat-card-title>{{ getUserData().fullName }}</mat-card-title>
-            <mat-card-subtitle>{{ getUserData().userName }}</mat-card-subtitle>
-          </mat-card-header>
-        </mat-card>
-        <mat-divider></mat-divider>
-        <button mat-menu-item>
-          <mat-icon>edit</mat-icon>
-          <span>Editar cuenta</span>
-        </button>
-        <button mat-menu-item (click)="logout()">
-          <mat-icon>exit_to_app</mat-icon>
-          <span>Cerrar sesión</span>
-        </button>
-      </mat-menu>
-    </div>
-    <ng-template #elseBlock>Content to render when condition is false.</ng-template> -->
+    <ng-template #loadingBlock>
+      Cargando...
+    </ng-template>
 
   </mat-toolbar-row>
 

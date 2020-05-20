@@ -22,8 +22,7 @@ import {
   MatButtonModule,
   MatSidenavModule,
   MatListModule,
-  MatCardModule,
-  MatProgressSpinnerModule
+  MatCardModule
 } from '@angular/material';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
@@ -59,8 +58,7 @@ import {TestComponent} from './test/test.component';
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    MatCardModule,
-    MatProgressSpinnerModule
+    MatCardModule
   ],
   providers: [UserService, RouteGuard, NotificationService, SpinnerService, LoginRouteGuard],
   bootstrap: [AppComponent]
